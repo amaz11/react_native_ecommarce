@@ -1,4 +1,4 @@
-import { Tabs } from "expo-router";
+import { Tabs, useRouter } from "expo-router";
 import { useFonts } from "expo-font";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -8,6 +8,7 @@ export const unstable_settings = {
   initialRouteName: "home",
 };
 const Layout = () => {
+  const router = useRouter();
   const [fontLoad] = useFonts({
     regular: require("../assets/fonts/DMSans-Regular.ttf"),
     medium: require("../assets/fonts/DMSans-Medium.ttf"),
@@ -28,10 +29,38 @@ const Layout = () => {
         }}
       />
       <Tabs.Screen
+        // Name of the route to hide.
+        name="home.style"
+        options={{
+          // This tab will no longer show up in the tab bar.
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        // Name of the route to hide.
+        name="cart"
+        options={{
+          // This tab will no longer show up in the tab bar.
+          headerTitleAlign: "center",
+          title: "Cart",
+          headerLeft: () => (
+            <Ionicons
+              name="chevron-back"
+              size={24}
+              color="black"
+              onPress={() => router.back()}
+              style={{ paddingLeft: 8 }}
+            />
+          ),
+          href: null,
+        }}
+      />
+      <Tabs.Screen
         name="home"
         options={{
           tabBarLabel: "Home",
           title: "Home",
+          headerShown: false,
           tabBarIcon: ({ focused, color }) => (
             <FontAwesome
               size={24}

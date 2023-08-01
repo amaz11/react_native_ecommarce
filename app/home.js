@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import {
-  FlatList,
-  Text,
-  View,
-  StyleSheet,
-  StatusBar,
-  ScrollView,
-} from "react-native";
+import { FlatList, Text, View, StyleSheet, StatusBar } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { EvilIcons, Fontisto } from "@expo/vector-icons";
+import style from "./home.style";
+import { Link } from "expo-router";
+import Welcome from "../components/Welcome/Welcome";
 
 const Index = () => {
   const [state, setstate] = useState([]);
@@ -17,20 +14,24 @@ const Index = () => {
       <SafeAreaView
         style={{
           overflow: "hidden",
-          paddingLeft: 20,
-          paddingRight: 20,
+          paddingLeft: 8,
+          paddingRight: 8,
           paddingTop: 20,
         }}
       >
-        <View>
-          <Text style={{ textAlign: "justify" }}>
-            Hello World hi there Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Quidem consequuntur minima aut mollitia
-            perferendis voluptatem? Praesentium officiis nihil quam, eum
-            voluptatem minima iusto nemo. Saepe, incidunt. Minima eligendi qui
-            eius?
-          </Text>
+        <View style={style.hearder}>
+          <EvilIcons name="location" size={24} color="black" />
+          <Text style={style.appbartext}>Dhaka, Bangladesh</Text>
+          <View style={{ alignItems: "flex-end" }}>
+            <View style={style.cartCount}>
+              <Text style={{ color: "#fff" }}>0</Text>
+            </View>
+            <Link href={"/cart"}>
+              <Fontisto name="shopping-bag" size={24} color="black" />
+            </Link>
+          </View>
         </View>
+        <Welcome />
         {/* <View>
           <FlatList
             contentContainerStyle={{
